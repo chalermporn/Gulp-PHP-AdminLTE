@@ -83,7 +83,8 @@ gulp.task('js', function() {
 	gulp.src([
 			paths.jquery + 'dist/jquery.js',
 			paths.bootstrap + 'javascripts/bootstrap.js',
-			paths.adminlte + 'dist/js/app.js'
+			paths.adminlte + 'dist/js/app.js',
+			src + 'js/**/*.js'
 		])
 	.pipe(concat('app.js'))
 	.pipe(uglify({preserveComments: 'some'})) // Keep some comments
@@ -121,15 +122,9 @@ gulp.task('bs-reload', function () {
 // Task for `gulp` command
 
 gulp.task('default',['browser-sync'], function() {
-	gulp.watch(src + '/*.html',['assets','bs-reload']);
+	gulp.watch(src + "**/*.html", ['assets','bs-reload']);
+	gulp.watch(src + "**/*.php", ['assets','bs-reload']);
+	gulp.watch(src + 'js/**/*.js',['js','bs-reload']);
 	gulp.watch(src + 'scss/**/*.sass',['sass','bs-reload']);
-	gulp.watch(src + "*.html", ['bs-reload']);
-	gulp.watch(src + "*.php", ['bs-reload']);
-	// gulp.watch(srcDir + 'root/*.*',['root']);
-	// gulp.watch(srcDir + 'lib/**/*.*',['lib']);
-	// gulp.watch(srcDir + 'sass/**/*.scss',['sass']);
-	// gulp.watch(srcDir + 'js/**/*.js',['js']);
-	// gulp.watch(srcDir + 'img/**/*.{png,jpg,gif,svg}',['imagemin']);
-	// gulp.watch(srcDir + "*.html", ['bs-reload']);
-	// gulp.watch(srcDir + "*.php", ['bs-reload']);
+	gulp.watch(src + 'img/**/*.{png,jpg,gif,svg}',['imagemin','bs-reload']);
 });
