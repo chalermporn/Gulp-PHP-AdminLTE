@@ -1,6 +1,6 @@
 # Gulp-PHP-AdminLTE
 
-* Gulp による WEB 開発環境の構築。
+* Gulp による お手軽 PHP WEB 開発環境の構築。
 * PHP, JQuery, Bootstrap, Font-Awesome, Admin LTE を利用した WEB サイト構築ができる。
 
 **主な機能**
@@ -8,6 +8,8 @@
 * SASS（`.scss`）の コンパイル & 連結 & ミニファイ
 * Javascript ファイルの連結 & ミニファイ
 * 画像ファイル（`.png``.gif`,`.jpg`,`.svg`）の画像最適化
+* PHP ビルトインサーバー
+* オートリロード
 
 ## Install
 
