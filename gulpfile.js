@@ -52,7 +52,7 @@ gulp.task('bowerassets', function() {
 // Assets
 
 gulp.task('assets', function() {
-	gulp.src(src + '**.html')
+	gulp.src(src + '**.{html,php}')
 		.pipe(gulp.dest(dest));
 	gulp.src(src + 'img/**.{png,jpg,gif,svg}')
 	    .pipe(imagemin({optimizationLevel: 7}))
