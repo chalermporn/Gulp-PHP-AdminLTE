@@ -15,16 +15,19 @@ var reload      = browserSync.reload;
 var shell = require('gulp-shell');
 
 // Directory Paths
-var src 		= 'src/';
 var dest 		= 'public/';
-var bowercomp 	= 'bower_components/';
-var paths 		= {
-					'jquery': bowercomp + 'jquery/',
-					'bootstrap': bowercomp + 'bootstrap-sass/assets/',
-					'fontawesome': bowercomp + 'font-awesome/',
-					'adminlte': bowercomp + 'AdminLTE/',
-					'view': '../resources/views/'
-				};
+
+var paths = {
+	'jquery': 'bower_components/jquery/',
+	'bootstrap': 'bower_components/bootstrap-sass/assets//',
+	'fontawesome': 'bower_components/font-awesome/',
+	'adminlte': 'bower_components/AdminLTE/',
+	'src': 'src/',
+	'lara_public': 'public/',
+	'lara_resources': 'resources/',
+	'lara_vendor': 'vendor/ontheroadjp/gulp-laravel-adminlte',
+}
+
 
 gulp.task('laravel-install',shell.task([ 
 	'composer create-project laravel/laravel --prefer-dist laravel',
@@ -58,33 +61,51 @@ gulp.task('clean', function(cb) {
 
 gulp.task('bowerassets', function() {
 	gulp.src(paths.bootstrap + 'fonts/bootstrap/**')
-		.pipe(gulp.dest(dest + 'fonts/bootstrap'));
+		.pipe(gulp.dest(paths.lara_public + 'fonts/bootstrap'));
 	gulp.src(paths.fontawesome + 'fonts/**')
-		.pipe(gulp.dest(dest + 'fonts'));
+		.pipe(gulp.dest(paths.lara_public + 'fonts'));
 	gulp.src(paths.adminlte + 'dist/css/**')
-		.pipe(gulp.dest(dest + 'css'));
+		.pipe(gulp.dest(paths.lara_public + 'css'));
 	gulp.src(paths.adminlte + 'dist/css/skins/**')
-		.pipe(gulp.dest(dest + 'css/skins'));
+		.pipe(gulp.dest(paths.lara_public + 'css/skins'));
 	gulp.src(paths.adminlte + 'dist/img/**.{png,jpg,gif,svg}')
         .pipe(imagemin({optimizationLevel: 7}))
-		.pipe(gulp.dest(dest + 'img/adminlte'));
+		.pipe(gulp.dest(paths.lara_public + 'img/adminlte'));
 });
 
 // -------------------------
 // Assets
 
+gulp.task('sed',shell.task([ 
+	'sh ../laravelsettings.sh'
+]));
+
 gulp.task('assets', function() {
-	gulp.src(src + '**/*.{html,php}')
-		.pipe(gulp.dest(dest));
-	gulp.src(src + 'img/**.{png,jpg,gif,svg}')
+	
+	// to resource/views/
+	gulp.src(paths.src + 'views/**/*.{html,php}')
+		.pipe(gulp.dest(paths.lara_resources + 'views/'));
+
+	// to resource/lang/
+	gulp.src(paths.src + 'lang/**/*.{php,mo,po}')
+		.pipe(gulp.dest(paths.lara_resources + 'lang/'));
+
+	// to vendor/ontheroadjp/gulp-laravel-adminlte/
+	gulp.src(paths.src + 'app/Providers/**/*.php')
+		.pipe(gulp.dest(paths.lara_vendor ));
+	
+	// ontheroadjp\gulp-laravel-adminlte\GulpLaravelAdminLTEServiceProvider::class,
+
+	// to public/
+	gulp.src(paths.src + 'img/**.{png,jpg,gif,svg}')
 	    .pipe(imagemin({optimizationLevel: 7}))
-		.pipe(gulp.dest(dest + 'img'));
+		.pipe(gulp.dest(paths.lara_public + 'img'));
 });
 
 // -------------------------
 // Sass
 gulp.task('sass', function () {
-	sass(src + 'sass',{
+	sass(paths.src + 'sass',{
 			style: 'expanded',
 			sourcemap: true
 		}
@@ -94,7 +115,7 @@ gulp.task('sass', function () {
 		minifier: false
 	}))
 	.pipe(sourcemaps.write('./'))
-	.pipe(gulp.dest(dest + 'css'))
+	.pipe(gulp.dest(paths.lara_public + 'css'))
 	.pipe(reload({stream:true}));
 });
 
@@ -106,11 +127,11 @@ gulp.task('js', function() {
 			paths.jquery + 'dist/jquery.js',
 			paths.bootstrap + 'javascripts/bootstrap.js',
 			paths.adminlte + 'dist/js/app.js',
-			src + 'js/**/*.js'
+			paths.src + 'js/**/*.js'
 		])
 	.pipe(concat('app.js'))
 	.pipe(uglify({preserveComments: 'some'})) // Keep some comments
-	.pipe(gulp.dest(dest + 'js'))
+	.pipe(gulp.dest(paths.lara_public + 'js'))
 	.pipe(reload({stream:true}));
 });
 
@@ -144,9 +165,9 @@ gulp.task('bs-reload', function () {
 // Task for `gulp` command
 
 gulp.task('default',['browser-sync'], function() {
-	gulp.watch(src + "**/*.html", ['assets','bs-reload']);
-	gulp.watch(src + "**/*.php", ['assets','bs-reload']);
-	gulp.watch(src + 'js/**/*.js',['js','bs-reload']);
-	gulp.watch(src + 'scss/**/*.sass',['sass','bs-reload']);
-	gulp.watch(src + 'img/**/*.{png,jpg,gif,svg}',['imagemin','bs-reload']);
+	gulp.watch(paths.src + "**/*.html", ['assets','bs-reload']);
+	gulp.watch(paths.src + "**/*.php", ['assets','bs-reload']);
+	gulp.watch(paths.src + 'js/**/*.js',['js','bs-reload']);
+	gulp.watch(paths.src + 'scss/**/*.sass',['sass','bs-reload']);
+	gulp.watch(paths.src + 'img/**/*.{png,jpg,gif,svg}',['imagemin','bs-reload']);
 });
