@@ -53,9 +53,9 @@ class GulpLaravelAdminLTEServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRoutes();
-        $this->publishPublicAssets();
-        $this->publishBaseAssets();
-        $this->publishViews();
+//        $this->publishPublicAssets();
+//        $this->publishBaseAssets();
+//        $this->publishViews();
     }
 
     /**
