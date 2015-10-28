@@ -12,17 +12,32 @@ var php = require('gulp-connect-php');
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 
+var shell = require('gulp-shell');
 
 // Directory Paths
 var src 		= 'src/';
-var dest 		= 'public_html/';
+var dest 		= 'public/';
 var bowercomp 	= 'bower_components/';
 var paths 		= {
 					'jquery': bowercomp + 'jquery/',
 					'bootstrap': bowercomp + 'bootstrap-sass/assets/',
 					'fontawesome': bowercomp + 'font-awesome/',
-					'adminlte': bowercomp + 'AdminLTE/'
+					'adminlte': bowercomp + 'AdminLTE/',
+					'view': '../resources/views/'
 				};
+
+gulp.task('laravel-install',shell.task([ 
+	'composer create-project laravel/laravel --prefer-dist laravel',
+	'mv laravel/gulpfile.js laravel/gulpfile.js.original',
+	'mv laravel/package.json laravel/package.json.original',
+	'mv laravel/public laravel/public_original',
+	'ln -s ../bower.json laravel/bower.json',
+	'ln -s ../bower_components laravel/bower_components',
+	'ln -s ../gulpfile.js laravel/gulpfile.js',
+	'ln -s ../node_modules laravel/node_modules',
+	'ln -s ../package.json laravel/package.json',
+	'ln -s ../src laravel/src'
+]));
 
 // -------------------------
 // build
@@ -103,13 +118,13 @@ gulp.task('js', function() {
 // Static server
 
 gulp.task('php', function() {
-	php.server({ base: './public_html/', port: 9998, keepalive: true});
+	php.server({ base: './public/', port: 9998, keepalive: true});
 });
 
 gulp.task('browser-sync',['php'], function() {
     browserSync({
         //server: {
-            baseDir: './public_html/',
+            baseDir: './public/',
 	proxy: "127.0.0.1:9998",
 	port: 9999,
 	open: true,
