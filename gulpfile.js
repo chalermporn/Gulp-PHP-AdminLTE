@@ -1,5 +1,7 @@
 
 var gulp = require('gulp');
+var del = require('del');
+var runSequence = require('run-sequence');
 var sass = require('gulp-ruby-sass');
 var pleeease = require('gulp-pleeease');
 var sourcemaps = require('gulp-sourcemaps');
@@ -24,12 +26,17 @@ var paths 		= {
 
 // -------------------------
 // build
-gulp.task('build',[
-	'bowerassets',
-	'assets',
-	'sass',
-	'js'
-]);
+
+gulp.task('build', function(callback) {
+		return runSequence(
+					'clean',
+					[ 'bowerassets','assets','sass','js' ]
+			);
+});
+
+gulp.task('clean', function(cb) {
+	return del([dest], cb);
+});
 
 // -------------------------
 // Bower Assets
