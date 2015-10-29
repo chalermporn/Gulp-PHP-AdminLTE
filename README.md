@@ -22,20 +22,17 @@ $ gulp
 
 **Installed**
 
+(Core)
+
 * Laravel 5.1.11
 * AdminLTE 2.3.2
 * Bootstrap 3.3.5
 * Font-Awesome 4.4.0
-* Jquery 2.1.4
+* JQuery 2.1.4
 
-## Build
+(Laravel Library)
 
-`larave/`ディレクとりに移動して`gulp build` を実行すれば必要なファイルが配置される
-
-```
-$ cd laravel
-$ gulp build
-```
+* xinax/laravel-gettext
 
 ## Run
 
