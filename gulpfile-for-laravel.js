@@ -34,7 +34,7 @@ gulp.task('laravel-auth',shell.task([
 
 gulp.task('laravel-gettext',shell.task([ 
 	'mkdir -p vendor/xinax',
-	'ln -s ../../src/vendor/xinax/laravel-gettext vendor/xinaxlaravel-gettext',
+	'ln -s ../../src/vendor/xinax/laravel-gettext vendor/xinax/laravel-gettext',
 	'sh ../bin/install-laravel-gettext.sh'
 ]));
 
