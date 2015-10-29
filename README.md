@@ -1,7 +1,7 @@
 # Gulp-PHP-AdminLTE
 
 * Gulp による お手軽 PHP WEB 開発環境の構築。
-* PHP, JQuery, Bootstrap, Font-Awesome, Admin LTE を利用した WEB サイト構築ができる。
+* Laravel, JQuery, Bootstrap, Font-Awesome, Admin LTE を利用した WEB サイト構築ができる。
 
 **主な機能**
 
@@ -14,54 +14,26 @@
 ## Install
 
 ```
-$ git clone https://github.com/ontheroadjp/Gulp-PHP-AdminLTE.git
+$ git clone -b for-laravel https://github.com/ontheroadjp/Gulp-PHP-AdminLTE.git
 $ cd Gulp-PHP-AdminLTE
 $ npm install
 $ bower install
+$ gulp laravel-install
 ```
+
+* AdminLTE 2.3.2
+* Bootstrap 3.3.5
+* Font-Awesome 4.4.0
+* Jquery 2.1.4
 
 ## Build
 
-`gulp build` コマンドで `public_html` にファイル一式が出力される
+`gulp build` コマンドで必要なファイルが配置される
+`gulp sed` コマンドで必要な設定が書き込まれる
 
 ```
 $ gulp build
-```
-
-`public_html` に出力されるファイル群
-
-```
-public_html
-├── css
-│   ├── AdminLTE.css
-│   ├── AdminLTE.min.css
-│   ├── skins
-│   │   ├── (AdminLTE スキンファイル)
-│   │   ...
-│   ├── style.css
-│   └── style.css.map
-├── fonts
-│   ├── FontAwesome.otf
-│   ├── bootstrap
-│   │   ├── glyphicons-halflings-regular.eot
-│   │   ├── glyphicons-halflings-regular.svg
-│   │   ├── glyphicons-halflings-regular.ttf
-│   │   ├── glyphicons-halflings-regular.woff
-│   │   └── glyphicons-halflings-regular.woff2
-│   ├── fontawesome-webfont.eot
-│   ├── fontawesome-webfont.svg
-│   ├── fontawesome-webfont.ttf
-│   ├── fontawesome-webfont.woff
-│   └── fontawesome-webfont.woff2
-├── img
-│   └── adminlte
-│       ├── （AdminLTE 用の画像ファイル）
-│       ...
-│
-├── index.html
-└── js
-     └── app.js
-
+$ gulp sed
 ```
 
 ## Run
