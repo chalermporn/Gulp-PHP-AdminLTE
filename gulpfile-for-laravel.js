@@ -26,18 +26,6 @@ var paths = {
 	'lara_vendor': 'vendor/ontheroadjp/gulp-laravel-adminlte',
 }
 
-gulp.task('laravel-auth',shell.task([ 
-	'mkdir -p vendor/ontheroadjp',
-	'ln -s ../../src/vendor/ontheroadjp/Laravel-Auth vendor/ontheroadjp/Laravel-Auth',
-	'sh ../bin/install-laravel-auth.sh'
-]));
-
-gulp.task('laravel-gettext',shell.task([ 
-	'mkdir -p vendor/xinax',
-	'ln -s ../../src/vendor/xinax/laravel-gettext vendor/xinax/laravel-gettext',
-	'sh ../bin/install-laravel-gettext.sh'
-]));
-
 // -------------------------
 // build
 
