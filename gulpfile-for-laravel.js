@@ -1,4 +1,3 @@
-
 var gulp = require('gulp');
 var del = require('del');
 var runSequence = require('run-sequence');
@@ -27,28 +26,26 @@ var paths = {
 	'lara_vendor': 'vendor/ontheroadjp/gulp-laravel-adminlte',
 }
 
+gulp.task('laravel-auth',shell.task([ 
+	'mkdir -p vendor/ontheroadjp',
+	'ln -s ../../src/vendor/ontheroadjp/Laravel-Auth vendor/ontheroadjp/Laravel-Auth',
+	'sh ../bin/install-laravel-auth.sh'
+]));
 
-gulp.task('laravel-install',shell.task([ 
-	'composer create-project laravel/laravel --prefer-dist laravel',
-	'mv laravel/gulpfile.js laravel/gulpfile.js.original',
-	'mv laravel/package.json laravel/package.json.original',
-	'mv laravel/public laravel/public_original',
-	'ln -s ../bower.json laravel/bower.json',
-	'ln -s ../bower_components laravel/bower_components',
-	'ln -s ../gulpfile.js laravel/gulpfile.js',
-	'ln -s ../node_modules laravel/node_modules',
-	'ln -s ../package.json laravel/package.json',
-	'ln -s ../src laravel/src'
+gulp.task('laravel-gettext',shell.task([ 
+	'mkdir -p vendor/xinax',
+	'ln -s ../../src/vendor/xinax/laravel-gettext vendor/xinaxlaravel-gettext',
+	'sh ../bin/install-laravel-gettext.sh'
 ]));
 
 // -------------------------
 // build
 
 gulp.task('build', function(callback) {
-		return runSequence(
-					'clean',
-					[ 'bowerassets','assets','sass','js' ]
-			);
+	return runSequence(
+		'clean',
+		[ 'bowerassets','assets','sass','js' ]
+	);
 });
 
 gulp.task('clean', function(cb) {
@@ -59,14 +56,22 @@ gulp.task('clean', function(cb) {
 // Bower Assets
 
 gulp.task('bowerassets', function() {
+
+	// Bootstrap
 	gulp.src(paths.bootstrap + 'fonts/bootstrap/**')
 		.pipe(gulp.dest(paths.lara_public + 'fonts/bootstrap'));
+
+	// Font-Awesome
 	gulp.src(paths.fontawesome + 'fonts/**')
 		.pipe(gulp.dest(paths.lara_public + 'fonts'));
+
+	// AdminLTE
 	gulp.src(paths.adminlte + 'dist/css/**')
 		.pipe(gulp.dest(paths.lara_public + 'css'));
+
 	gulp.src(paths.adminlte + 'dist/css/skins/**')
 		.pipe(gulp.dest(paths.lara_public + 'css/skins'));
+
 	gulp.src(paths.adminlte + 'dist/img/**.{png,jpg,gif,svg}')
         .pipe(imagemin({optimizationLevel: 7}))
 		.pipe(gulp.dest(paths.lara_public + 'img/adminlte'));
@@ -81,25 +86,23 @@ gulp.task('sed',shell.task([
 
 gulp.task('assets', function() {
 	
-	// to resource/views/
-	gulp.src(paths.src + 'views/**/*.{html,php}')
-		.pipe(gulp.dest(paths.lara_resources + 'views/'));
-
-	// to resource/lang/
-	gulp.src(paths.src + 'lang/**/*.{php,mo,po}')
-		.pipe(gulp.dest(paths.lara_resources + 'lang/'));
-
-	// to vendor/ontheroadjp/gulp-laravel-adminlte/
-	gulp.src(paths.src + 'app/Providers/**/*.php')
-		.pipe(gulp.dest(paths.lara_vendor ));
-	
-	// ontheroadjp\gulp-laravel-adminlte\GulpLaravelAdminLTEServiceProvider::class,
-
-	// to public/
-	gulp.src(paths.src + 'img/**.{png,jpg,gif,svg}')
-	    .pipe(imagemin({optimizationLevel: 7}))
-		.pipe(gulp.dest(paths.lara_public + 'img'));
-	
+//	// to resource/views/
+//	gulp.src(paths.src + 'views/**/*.{html,php}')
+//		.pipe(gulp.dest(paths.lara_resources + 'views/'));
+//
+//	// to resource/lang/
+//	gulp.src(paths.src + 'lang/**/*.{php,mo,po}')
+//		.pipe(gulp.dest(paths.lara_resources + 'lang/'));
+//
+//	// to vendor/ontheroadjp/gulp-laravel-adminlte/
+//	gulp.src(paths.src + 'app/Providers/**/*.php')
+//		.pipe(gulp.dest(paths.lara_vendor ));
+//	
+//	// to public/
+//	gulp.src(paths.src + 'img/**.{png,jpg,gif,svg}')
+//	    .pipe(imagemin({optimizationLevel: 7}))
+//		.pipe(gulp.dest(paths.lara_public + 'img'));
+//	
 	// to public/ 
 	gulp.src( 'public_original/index.php')
 		.pipe(gulp.dest(paths.lara_public));
