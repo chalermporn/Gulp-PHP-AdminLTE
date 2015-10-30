@@ -1,13 +1,29 @@
 
 cd laravel
 
-# DB Install
+## INSTALL ----------------------
+echo "=== gulp build ..."
+gulp build
+
+## DB INSTALL ----------------------
+echo "=== install DB ..."
+
 chmod 777 storage
 ln -s ../../src/database.sqlite storage/database.sqlite
 gsed -i -e "s/'default' => env('DB_CONNECTION', 'mysql'),$/'default' => env\('DB_CONNECTION', 'sqlite'\),/" config/database.php
 
+echo "complete!"
+echo ""
+
 # create DB tables
+echo "create DB tables"
 php artisan migrate
+
+echo "complete!"
+echo ""
+
+## INSTALL ----------------------
+echo "==== Install Auth Service Provider ..."
 
 # Add Service Provider.
 gsed -i -e "/^ *'providers' => \[$/a \\\t\\t\\t\\tontheroadjp\\\LaravelAuth\\\LaravelAuthServiceProvider::class," config/app.php
@@ -21,7 +37,11 @@ cp -r ../bower_components/AdminLTE/plugins/iCheck public/js/
 # exec. dump-autoload.
 composer dump-autoload
 
+echo "complete!"
+echo ""
+
 ## INSTALL ----------------------
+echo "==== Install GetText Service Provider ..."
 
 # Copy Package
 cp -r src/vendor/xinax vendor/
@@ -46,11 +66,6 @@ sleep 3s
 # Modify config file.
 gsed -i -e "/^ *'supported-locales' => array($/a \\\t\\t\\t\\t'ja_JP'," config/laravel-gettext.php
 
-## INSTALL ----------------------
-
-echo "=== gulp build ..."
-gulp build
-
-
-
+echo "complete!"
+echo ""
 
