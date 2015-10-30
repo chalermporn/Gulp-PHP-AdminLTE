@@ -163,6 +163,6 @@ gulp.task('default',['browser-sync'], function() {
 	gulp.watch(paths.src + "**/*.html", ['assets','bs-reload']);
 	gulp.watch(paths.src + "**/*.php", ['assets','bs-reload']);
 	gulp.watch(paths.src + 'js/**/*.js',['js','bs-reload']);
-	gulp.watch(paths.src + 'scss/**/*.sass',['sass','bs-reload']);
+	gulp.watch(paths.src + 'sass/**/*.scss',['sass','bs-reload']);
 	gulp.watch(paths.src + 'img/**/*.{png,jpg,gif,svg}',['imagemin','bs-reload']);
 });

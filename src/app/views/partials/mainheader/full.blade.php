@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>S</b>oL</span>
+        <span class="logo-mini"><b>L</b>vL</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">Start on the Laravel</span>
+        <span class="logo-lg">Laravel</span>
     </a>
 
     <!-- Header Navbar -->
@@ -149,6 +149,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <!-- Control Sidebar Toggle Button -->
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>

@@ -61,6 +61,12 @@
     </div><!-- /.login-box -->
 </div>
 
+    <div class="social-auth-links text-center">
+        <p class="mg-30">- OR -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> {{ _('Sign in using Facebook') }}</a>
+        <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i>{{ _('Sign in using Google') }}</a>
+    </div><!-- /.social-auth-links -->
+
 
     @include('auth.scripts')
 

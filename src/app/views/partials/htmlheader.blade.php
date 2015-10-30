@@ -1,7 +1,6 @@
 <?php
     LaravelGettext::setLocale('ja_JP');
     // LaravelGettext::setLocale('en_US');
-    // LaravelGettext::getSelector($labels = ['English','Japanese']);
 ?>
 
 <meta charset="UTF-8">

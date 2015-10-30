@@ -15,6 +15,12 @@ desired effect
 |               | skin-yellow                             |
 |               | skin-red                                |
 |               | skin-green                              |
+|               | skin-blue-light                         |
+|               | skin-black-light                        |
+|               | skin-purple-light                       |
+|               | skin-yellow-light                       |
+|               | skin-red-light                          |
+|               | skin-green-light                        |
 |---------------------------------------------------------|
 |LAYOUT OPTIONS | fixed                                   |
 |               | layout-boxed                            |
@@ -23,12 +29,14 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">
+<body class="skin-blue">
 <div class="wrapper">
 
-    @include('partials.mainheader')
+    {{-- @include('partials.mainheader.full') --}}
+    @include('partials.mainheader.full')
 
-    @include('partials.sidebar')
+    {{-- @include('partials.sidebar.full') --}}
+    @include('partials.sidebar.simple')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
