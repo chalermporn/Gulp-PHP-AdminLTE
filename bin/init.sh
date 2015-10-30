@@ -1,6 +1,14 @@
 
 cd laravel
 
+# DB Install
+chmod 777 storage
+ln -s ../../src/database.sqlite storage/database.sqlite
+gsed -i -e "s/'default' => env('DB_CONNECTION', 'mysql'),$/'default' => env\('DB_CONNECTION', 'sqlite'\),/" config/database.php
+
+# create DB tables
+php artisan migrate
+
 # Add Service Provider.
 gsed -i -e "/^ *'providers' => \[$/a \\\t\\t\\t\\tontheroadjp\\\LaravelAuth\\\LaravelAuthServiceProvider::class," config/app.php
 
@@ -40,6 +48,7 @@ gsed -i -e "/^ *'supported-locales' => array($/a \\\t\\t\\t\\t'ja_JP'," config/l
 
 ## INSTALL ----------------------
 
+echo "=== gulp build ..."
 gulp build
 
 

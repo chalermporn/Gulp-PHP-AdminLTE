@@ -23,6 +23,8 @@ gulp.task('laravel-install',shell.task([
 	'ln -s ../package.json laravel/package.json',
 	'ln -s ../src laravel/src',
 
+	'ln -s ../src/database.sqlite laravel/storage/database.sqlite',
+	'chmod 777 laravel/storage',
 	// /app/Http/Controllers
 	//'cp -r laravel/app/Http/Controllers/* src/app/Controllers',
 	//'rm -rf laravel/app/Http/Controllers',
