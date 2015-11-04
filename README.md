@@ -14,7 +14,7 @@
 ## Install
 
 ```
-$ git clone -b for-laravel https://github.com/ontheroadjp/Gulp-PHP-AdminLTE.git
+$ git clone -b lara https://github.com/ontheroadjp/Gulp-PHP-AdminLTE.git
 $ cd Gulp-PHP-AdminLTE
 $ npm install
 $ gulp
@@ -32,17 +32,18 @@ $ gulp
 
 (Laravel Library)
 
+* ontheroadjp/laravel-auth
 * xinax/laravel-gettext
 
 ## Run
 
-`gulp` コマンドで PHP ビルトインサーバーが起動して`localhost:9999`でアクセス可能。
+laravel ディレクトリに移動して`gulp` コマンドで PHP ビルトインサーバーが起動して`localhost:9999`でアクセス可能。
 
 ```
 $ gulp
 ```
 
-PHP ビルトインサーバーが起動している状態で`src/`以下のファイルを修正すると、修正したファイルは自動的に`laravel/public/`へ配置され、ブラウザがリロードされる。
+PHP ビルトインサーバーが起動している状態で`src/`以下のファイルを修正すると、自動的に`php artisan vendor:publish`が発行される。
 
 ## LICENCE
 
