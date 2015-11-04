@@ -68,8 +68,8 @@ gulp.task('bowerassets', function() {
 // -------------------------
 // Assets
 
-gulp.task('sed',shell.task([ 
-	'sh ../laravelsettings.sh'
+gulp.task('publish',shell.task([ 
+	'php artisan vendor:publish --force'
 ]));
 
 gulp.task('assets', function() {
@@ -160,8 +160,8 @@ gulp.task('bs-reload', function () {
 // Task for `gulp` command
 
 gulp.task('default',['browser-sync'], function() {
-	gulp.watch(paths.src + "**/*.html", ['assets','bs-reload']);
-	gulp.watch(paths.src + "**/*.php", ['assets','bs-reload']);
+	gulp.watch(paths.src + "**/*.html", ['assets','publish','bs-reload']);
+	gulp.watch(paths.src + "**/*.php", ['assets','publish','bs-reload']);
 	gulp.watch(paths.src + 'js/**/*.js',['js','bs-reload']);
 	gulp.watch(paths.src + 'sass/**/*.scss',['sass','bs-reload']);
 	gulp.watch(paths.src + 'img/**/*.{png,jpg,gif,svg}',['imagemin','bs-reload']);

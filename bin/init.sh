@@ -1,11 +1,15 @@
 
 cd laravel
 
-## INSTALL ----------------------
+# -----------------------------------------
+# gulp build
+# -----------------------------------------
 echo "=== gulp build ..."
 gulp build
 
-## DB INSTALL ----------------------
+# -----------------------------------------
+# DB INSTALL
+# -----------------------------------------
 echo "=== install DB ..."
 
 chmod 777 storage
@@ -22,7 +26,9 @@ php artisan migrate
 echo "complete!"
 echo ""
 
-## INSTALL ----------------------
+# -----------------------------------------
+# INSTALL laravel-auth
+# -----------------------------------------
 echo "==== Install Auth Service Provider ..."
 
 ln -s ../../src/vendor/ontheroadjp vendor/
@@ -45,12 +51,16 @@ php artisan vendor:publish
 echo "complete!"
 echo ""
 
-## INSTALL ----------------------
+# -----------------------------------------
+# INSTALL laravel-gettext
+# -----------------------------------------
 echo "==== Install GetText Service Provider ..."
 
 # Copy Package
-cp -r src/vendor/xinax vendor/
-sleep 5s
+#cp -r src/vendor/xinax vendor/
+#sleep 5s
+
+ln -s ../../src/vendor/xinax vendor/
 
 # Add Service Provider.
 gsed -i -e "/^ *'providers' => \[$/a \\\t\\t\\t\\tXinax\\\LaravelGettext\\\LaravelGettextServiceProvider::class," config/app.php
@@ -68,7 +78,7 @@ composer dump-autoload
 php artisan vendor:publish
 
 # Modify config file.
-gsed -i -e "/^ *'supported-locales' => array($/a \\\t\\t\\t\\t'ja_JP'," config/laravel-gettext.php
+#gsed -i -e "/^ *'supported-locales' => array($/a \\\t\\t\\t\\t'ja_JP'," config/laravel-gettext.php
 
 echo "complete!"
 echo ""

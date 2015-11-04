@@ -38,7 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Gulp-Laravel5-Auth</div>
+                <div><a href="home">{{ _('Start now !') }}</a></div>
             </div>
         </div>
     </body>

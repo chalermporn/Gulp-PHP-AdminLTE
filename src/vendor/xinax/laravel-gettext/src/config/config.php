@@ -18,6 +18,7 @@ return array(
      */
     'supported-locales' => array(
         'en_US',
+				'ja_JP',
     ),
 
     /**
@@ -50,12 +51,12 @@ return array(
     /**
      * Project name: is used on .po header files
      */
-    'project' => 'MultilanguageLaravelApplication',
+    'project' => 'Laravel-Auth',
 
     /**
      * Translator contact data (used on .po headers too)
      */
-    'translator' => 'James Translator <james@translations.colm>',
+    'translator' => '@ontheroad_jp <dev@ontheroad.jp>',
 
     /**
      * Paths where PoEdit will search recursively for strings to translate.
