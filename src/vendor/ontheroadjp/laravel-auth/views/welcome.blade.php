@@ -4,7 +4,7 @@
         <title>Laravel</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
+				<link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css" />
         <style>
             html, body {
                 height: 100%;
@@ -38,8 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Gulp-Laravel5-Auth</div>
-                <div><a href="home">{{ _('Start now !') }}</a></div>
+                <div class="title">Gulp-Laravel5-AdminLTE</div>
+                <div><a href="home" class="btn btn-primary">{{ _('Start now !') }}</a></div>
             </div>
         </div>
     </body>

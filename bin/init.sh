@@ -8,18 +8,20 @@ echo "=== gulp build ..."
 gulp build
 
 # -----------------------------------------
-# DB INSTALL
+# DB INSTALL(SQLite3)
 # -----------------------------------------
 echo "=== install DB ..."
 
 chmod 777 storage
-ln -s ../../src/database.sqlite storage/database.sqlite
+ln -s ../../src/storage/database.sqlite storage/database.sqlite
 gsed -i -e "s/'default' => env('DB_CONNECTION', 'mysql'),$/'default' => env\('DB_CONNECTION', 'sqlite'\),/" config/database.php
 
 echo "complete!"
 echo ""
 
-# create DB tables
+# -----------------------------------------
+# create DB tables(migrations)
+# -----------------------------------------
 echo "create DB tables"
 php artisan migrate
 
