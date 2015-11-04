@@ -25,17 +25,22 @@ echo ""
 ## INSTALL ----------------------
 echo "==== Install Auth Service Provider ..."
 
+ln -s ../../src/vendor/ontheroadjp vendor/
+
 # Add Service Provider.
-gsed -i -e "/^ *'providers' => \[$/a \\\t\\t\\t\\tontheroadjp\\\LaravelAuth\\\LaravelAuthServiceProvider::class," config/app.php
+gsed -i -e "/^ *'providers' => \[$/a \\\t\\t\\t\\tOntheroadjp\\\LaravelAuth\\\Providers\\\LaravelAuthServiceProvider::class," config/app.php
 
 # Add auto loader.
-gsed -i -e '/^ *\"psr-4\": {$/a \\t\t\t\t\t\t"ontheroadjp\\\\\LaravelAuth\\\\": "src/app/",' composer.json
+gsed -i -e '/^ *\"psr-4\": {$/a \\t\t\t\t\t\t"Ontheroadjp\\\\\LaravelAuth\\\\": "vendor/ontheroadjp/laravel-auth/",' composer.json
 
 # Copy required JQuery plugin
 cp -r ../bower_components/AdminLTE/plugins/iCheck public/js/
 
 # exec. dump-autoload.
 composer dump-autoload
+
+# exec. vendor:publishl
+php artisan vendor:publish
 
 echo "complete!"
 echo ""
@@ -61,7 +66,6 @@ composer dump-autoload
 
 # exec. vendor:publishl
 php artisan vendor:publish
-sleep 3s
 
 # Modify config file.
 gsed -i -e "/^ *'supported-locales' => array($/a \\\t\\t\\t\\t'ja_JP'," config/laravel-gettext.php

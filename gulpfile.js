@@ -32,14 +32,14 @@ gulp.task('laravel-install',shell.task([
 	//'ln -s ../src/app/Models laravel/app/Models',
 
 	//resources/views
-	'cp -r laravel/resources/views/* src/app/views',
-	'rm -rf laravel/resources/views',
-	'ln -s ../src/app/views laravel/resources/views',
+	//'cp -r laravel/resources/views/* src/app/views',
+	//'rm -rf laravel/resources/views',
+	//'ln -s ../src/app/views laravel/resources/views',
 
 	// /resources/lang
-	'cp -r laravel/resources/lang/* src/app/lang',
-	'rm -rf laravel/resources/lang',
-	'ln -s ../src/app/lang laravel/resources/lang',
+	//'cp -r laravel/resources/lang/* src/app/lang',
+	//'rm -rf laravel/resources/lang',
+	//'ln -s ../src/app/lang laravel/resources/lang',
 
 	// /database/migrations
 	//'cp -r laravel/database/migrations/* src/app/migrations',
